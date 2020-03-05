@@ -1,16 +1,28 @@
 const { desktopCapturer,remote } = require('electron');
 const { writeFile } = require('fs');
-const { Menu } = remote;
+const { dialog, Menu } = remote;
 
 
 // Buttons
 const videoElement = document.querySelector('video');
-const startBtn = document.getElementById('startBtn');
-const stopBtn = document.getElementById('stopBtn');
 const videoSelectBtn = document.getElementById('videoSelectBtn');
 
 videoSelectBtn.onclick = getVideoSources;
 
+const startBtn = document.getElementById('startBtn');
+startBtn.onclick = e => {
+  mediaRecorder.start();
+  startBtn.classList.add('is-danger');
+  startBtn.innerText = 'Recording';
+};
+
+const stopBtn = document.getElementById('stopBtn');
+
+stopBtn.onclick = e => {
+  mediaRecorder.stop();
+  startBtn.classList.remove('is-danger');
+  startBtn.innerText = 'Start';
+};
 
 // Get the Available Video Sources
 async function getVideoSources(){
@@ -80,11 +92,13 @@ async function handleStop(e){
     const buffer = Buffer.from(await blob.arrayBuffer());
 
     const { filePath } = await dialog.showSaveDialog({
+
         buttonLabel: 'Save video',
-        defaultPath: `vid-${Data.now()}.webm`
+        defaultPath: `vid-${Date.now()}.webm`
     });
 
     console.log(filePath);
-
-    writeFile(filePath, buffer, () => console.log('video saved successfully!'));
+    if (filePath){
+        writeFile(filePath, buffer, () => console.log('video saved successfully!'));
+    }
 }
