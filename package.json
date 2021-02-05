@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
-  "productName": "my-app",
+  "name": "electron-recorder",
+  "productName": "Electron-Recorder",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "A Simple electron recorder app",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -21,7 +21,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "my_app"
+            "name": "Electron Recorder"
           }
         },
         {
@@ -32,11 +32,15 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "name": "Electron Recorder"
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
-          "config": {}
+          "config": {
+            "name": "Electron Recorder"
+          }
         }
       ]
     }
