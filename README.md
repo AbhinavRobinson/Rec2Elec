@@ -14,3 +14,9 @@ Run a local instance using the `npm start` command
 >> Check "OUT" folder created by NPM and your local runnable
 
 Cheers! 😎
+
+#### DOC with screenshots
+
+https://github.com/AbhinavRobinson/Electron-Screen-Recorder/issues/7
+
+I have added Screenshots for instructions in this issue.
